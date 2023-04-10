@@ -28,7 +28,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-latest, windows-latest]
+        os: [windows-latest] #macos-latest, 
 
     steps:
       - uses: actions/checkout@v3
@@ -51,15 +51,15 @@ jobs:
       
       # add license, documentation, configuration file sample and disclaimer
       # - note: `move [...] alias move=mv [...]` is to support using the same commands on all platforms
-      - run: |
-          move LICENSE . 2> nul || { shopt -s expand_aliases; alias move=mv; } 
-          move LICENSE dist/
-          move README.md dist/
-          move emailproxy.config dist/
-          echo 'This binary distribution is automatically created for each Email OAuth 2.0 Proxy release, ' >> _.txt
-          echo 'but is not tested, and is not officially supported. Using the main emailproxy.py script ' >> _.txt
-          echo 'directly is recommended for best results: https://github.com/simonrob/email-oauth2-proxy/' >> _.txt
-          move _.txt dist/GettingStarted.txt
+      #- run: |
+      #    move LICENSE . 2> nul || { shopt -s expand_aliases; alias move=mv; } 
+      #    move LICENSE dist/
+      #    move README.md dist/
+      #    move emailproxy.config dist/
+      #    echo 'This binary distribution is automatically created for each Email OAuth 2.0 Proxy release, ' >> _.txt
+      #    echo 'but is not tested, and is not officially supported. Using the main emailproxy.py script ' >> _.txt
+      #    echo 'directly is recommended for best results: https://github.com/simonrob/email-oauth2-proxy/' >> _.txt
+      #    move _.txt dist/GettingStarted.txt
       
       # on macOS `--onefile` creates bundle *and* binary; we don't need both (and the .app also contains the binary)
       - if: runner.os == 'macOS'
